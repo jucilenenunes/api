@@ -9,29 +9,29 @@ export class ProjetosController {
     constructor(@InjectRepository(ProjetosModel) private model: Repository<ProjetosModel>) {}
     
     @Post()
-    public async create(@Body() body: ProjetosSchema): Promise<{ data: ProjetosModel }> {
+    public async create(@Body() body: ProjetosSchema): Promise<ProjetosModel> {
         const projetoCreated = await this.model.save(body);
-        return { data: projetoCreated };
+        return projetoCreated;
       }
 
       @Get(':id')
-      public async getOne(@Param('id', ParseIntPipe) id: number ): Promise<{ data: ProjetosModel }> {
+      public async getOne(@Param('id', ParseIntPipe) id: number ): Promise<ProjetosModel> {
         const projetos = await this.model.findOne({ where: { id } });
 
         if (!projetos) {
             throw new NotFoundException(`Não localizado projeto selecionado!`);
         }
-        return{ data: projetos};
+        return projetos;
       } 
 
     @Get()
-    public async getAll(): Promise<{ data: ProjetosModel[] }> {
+    public async getAll(): Promise<ProjetosModel[]> {
         const list = await this.model.find();
-        return { data: list};
+        return list;
     } 
 
     @Put(':id')
-    public async update(@Param('id', ParseIntPipe)id: number, @Body() body: ProjetosSchema): Promise<{ data: ProjetosModel}> {
+    public async update(@Param('id', ParseIntPipe)id: number, @Body() body: ProjetosSchema): Promise<ProjetosModel> {
         const projetos = await this.model.findOne({ where: { id } });
 
         if (!projetos) {
@@ -40,11 +40,11 @@ export class ProjetosController {
 
         await this.model.update({ id }, body );
 
-        return { data: await this.model.findOne({ where: { id } }) };
+        return await this.model.findOne({ where: { id } });
     } 
 
     @Delete(':id')
-    public async delete(@Param('id', ParseIntPipe) id: number): Promise<{data: string}> {
+    public async delete(@Param('id', ParseIntPipe) id: number): Promise<string> {
         const projetos = await this.model.findOne({ where: { id } });
 
         if (!projetos) {
@@ -53,6 +53,6 @@ export class ProjetosController {
 
         this.model.delete(id);
 
-        return { data: `O projeto ${id} foi excluído com sucesso!`}
+        return `O projeto ${id} foi excluído com sucesso!`
     } 
 }
