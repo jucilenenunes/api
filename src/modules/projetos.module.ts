@@ -9,4 +9,3 @@ import { ProjetosController } from 'src/controllers/projetos.controller';
 })
 
 export class ProjetosModule {}
-

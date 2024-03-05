@@ -1,4 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+
 @Entity()
 export class ProjetosModel {
     @PrimaryGeneratedColumn()
@@ -11,5 +12,3 @@ export class ProjetosModel {
     descricao: string;
 
     @Column({ length: 120 })
-    responsavel: string;
-}
