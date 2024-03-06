@@ -2,7 +2,7 @@ import { IsInt, IsString, MaxLength } from 'class-validator';
 
 export class ProjetosSchema {
     @IsInt()
-    id: number;
+    id?: number;
 
     @IsString()
     @MaxLength(100)

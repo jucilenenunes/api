@@ -1,15 +1,15 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-@Entity()
+@Entity("projetos")
 export class ProjetosModel {
     @PrimaryGeneratedColumn()
-    id: number;
+    id?: number;
 
-    @Column({ length: 120 })
+    @Column({ length: 100 })
     titulo: string;
 
     @Column({ length: 700 })
     descricao: string;
 
-    @Column({ length: 120 })
-    responsavel: string;
+    @Column({ length: 100 })
+    responsavel:string;
 }
